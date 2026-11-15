@@ -30,6 +30,10 @@
         <input type="checkbox" id="insurance"> Повна страховка (+200 грн/доба)
     </label>
 
+    <label>
+        <input type="checkbox" id="childSeat"> Дитяче крісло (+100 грн/доба)
+    </label>
+
     <button onclick="calculate()">Розрахувати</button>
     <p class="result" id="total"></p>
 
@@ -39,13 +43,14 @@
             let price = Number(document.getElementById("car").value);
             let days = Number(document.getElementById("days").value);
             let insurance = document.getElementById("insurance").checked ? 200 : 0;
+            let childSeat = document.getElementById("childSeat").checked ? 100 : 0;
 
             if (days < 1) {
                 alert("Кількість днів має бути не менше 1");
                 return;
             }
 
-            let total = (price + insurance) * days;
+            let total = (price + insurance + childSeat) * days;
             if (days >= 7) {
                 total = total * 0.9;
             }
