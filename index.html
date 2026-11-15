@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Оренда автомобіля</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        label { display: block; margin-top: 10px; }
+        button { margin-top: 15px; padding: 6px 14px; }
+        .result { font-weight: bold; color: #2c3e50; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <!-- Завдання 3: Розрахунок вартості оренди автомобіля -->
+    <h3>Розрахунок вартості оренди автомобіля</h3>
+
+    <label>Автомобіль:
+        <select id="car">
+            <option value="900">Renault Logan (економ) - 900 грн/доба</option>
+            <option value="1500">Toyota Corolla (комфорт) - 1500 грн/доба</option>
+            <option value="2800">BMW 5 (бізнес) - 2800 грн/доба</option>
+        </select>
+    </label>
+
+    <label>Кількість днів:
+        <input type="number" id="days" value="3" min="1">
+    </label>
+
+    <label>
+        <input type="checkbox" id="insurance"> Повна страховка (+200 грн/доба)
+    </label>
+
+    <button onclick="calculate()">Розрахувати</button>
+    <p class="result" id="total"></p>
+
+    <script>
+        // Завдання 3: Підрахунок суми оренди зі знижкою від 7 днів
+        function calculate() {
+            let price = Number(document.getElementById("car").value);
+            let days = Number(document.getElementById("days").value);
+            let insurance = document.getElementById("insurance").checked ? 200 : 0;
+
+            if (days < 1) {
+                alert("Кількість днів має бути не менше 1");
+                return;
+            }
+
+            let total = (price + insurance) * days;
+            if (days >= 7) {
+                total = total * 0.9;
+            }
+
+            document.getElementById("total").textContent =
+                "Вартість оренди: " + total + " грн" + (days >= 7 ? " (знижка 10%)" : "");
+        }
+    </script>
+</body>
+</html>
